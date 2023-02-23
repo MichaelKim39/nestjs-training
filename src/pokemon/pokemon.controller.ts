@@ -1,25 +1,7 @@
 import { Controller, Get, HttpCode, Req } from '@nestjs/common';
 import { Request } from 'express';
-
-type Pokemon = {
-  name: string;
-  type: string;
-};
-
-const pokemen = [
-  {
-    name: 'pikachu',
-    type: 'electric',
-  },
-  {
-    name: 'blastoise',
-    type: 'water',
-  },
-  {
-    name: 'geodude',
-    type: 'rock',
-  },
-];
+import { MOCK_POKEMEN } from 'src/utils/mocks/mock-pokemen';
+import { Pokemon } from 'src/utils/pokemon';
 
 // Takes optional controller path prefix of pokemon
 @Controller('pokemon')
@@ -31,6 +13,6 @@ export class PokemonController {
   // Define action
   // Name is not significant here, but must declare a method to bind route to
   findAll(@Req() request: Request): Pokemon[] {
-    return pokemen;
+    return MOCK_POKEMEN;
   }
 }
