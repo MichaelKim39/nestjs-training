@@ -10,12 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Ability {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  Pokemon     Pokemon? @relation(fields: [pokemonId], references: [id])
+  pokemonId   Int?
+}
+
 model Pokemon {
-  id    Int        @id @default(autoincrement())
-  name  String     @unique
-  type  PokeType[]
-  hp    Int
-  speed Int
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  type      PokeType[]
+  hp        Int
+  speed     Int
+  level     Int        @default(1)
+  abilities Ability[]
 }
 
 enum PokeType {

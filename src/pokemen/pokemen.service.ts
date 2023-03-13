@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePokemanDto } from './dto/create-pokeman.dto';
 import { UpdatePokemanDto } from './dto/update-pokeman.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { PokeType } from '@prisma/client';
 
 @Injectable()
 export class PokemenService {
@@ -12,8 +13,12 @@ export class PokemenService {
     return this.prisma.pokemon.create({ data: createPokemanDto });
   }
 
-  findAll() {
-    return this.prisma.pokemon.findMany();
+  findAll(types?: PokeType[]) {
+    return this.prisma.pokemon.findMany({
+      where: {
+        ...(types && { type: { hasSome: types } }),
+      },
+    });
   }
 
   findOne(id: number) {
