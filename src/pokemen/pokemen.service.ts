@@ -10,29 +10,45 @@ export class PokemenService {
 
   // CRUD Operations
   create(createPokemanDto: CreatePokemanDto) {
-    return this.prisma.pokemon.create({ data: createPokemanDto });
+    const { abilityIds, ...pokemanData } = createPokemanDto;
+    const abilitiesToConnect = abilityIds.map((abilityId) => ({
+      id: abilityId,
+    }));
+
+    return this.prisma.pokeman.create({
+      data: {
+        abilities: {
+          connect: abilitiesToConnect,
+        },
+        ...pokemanData,
+      },
+    });
   }
 
-  findAll(types?: PokeType[]) {
-    return this.prisma.pokemon.findMany({
+  findAll() {
+    return this.prisma.pokeman.findMany();
+  }
+
+  findByType(pokeType: PokeType) {
+    return this.prisma.pokeman.findMany({
       where: {
-        ...(types && { type: { hasSome: types } }),
+        type: { has: pokeType },
       },
     });
   }
 
   findOne(id: number) {
-    return this.prisma.pokemon.findUniqueOrThrow({ where: { id } });
+    return this.prisma.pokeman.findUniqueOrThrow({ where: { id } });
   }
 
   update(id: number, updatePokemanDto: UpdatePokemanDto) {
-    return this.prisma.pokemon.update({
+    return this.prisma.pokeman.update({
       where: { id },
       data: updatePokemanDto,
     });
   }
 
   remove(id: number) {
-    return this.prisma.pokemon.delete({ where: { id } });
+    return this.prisma.pokeman.delete({ where: { id } });
   }
 }

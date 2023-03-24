@@ -14,6 +14,6 @@ export class CreatePokemanDto {
   @ApiProperty()
   speed: number;
 
-  // @ApiProperty()
-  // abilities: Ability[];
+  @ApiProperty()
+  abilityIds: number[];
 }

@@ -14,11 +14,11 @@ model Ability {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
-  Pokemon     Pokemon? @relation(fields: [pokemonId], references: [id])
-  pokemonId   Int?
+  Pokeman     Pokeman? @relation(fields: [pokemanId], references: [id])
+  pokemanId   Int?
 }
 
-model Pokemon {
+model Pokeman {
   id        Int        @id @default(autoincrement())
   name      String     @unique
   type      PokeType[]

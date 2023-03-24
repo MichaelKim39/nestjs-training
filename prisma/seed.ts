@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   // create two dummy pokemen
-  const pokemon1 = await prisma.pokemon.upsert({
+  const pokeman1 = await prisma.pokeman.upsert({
     where: { name: 'Pikachu' },
     update: {},
     create: {
@@ -18,7 +18,7 @@ async function main() {
     },
   });
 
-  const pokemon2 = await prisma.pokemon.upsert({
+  const pokeman2 = await prisma.pokeman.upsert({
     where: { name: 'Bulbasaur' },
     update: {},
     create: {
@@ -29,7 +29,7 @@ async function main() {
     },
   });
 
-  console.log({ pokemon1, pokemon2 });
+  console.log({ pokeman1, pokeman2 });
 }
 
 // execute the main function
