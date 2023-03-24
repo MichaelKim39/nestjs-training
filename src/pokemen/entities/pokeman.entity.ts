@@ -1,7 +1,7 @@
-import { Pokemon, PokeType } from '@prisma/client';
+import { Pokeman, PokeType } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class PokemanEntity implements Pokemon {
+export class PokemanEntity implements Pokeman {
   @ApiProperty()
   id: number;
 
@@ -16,4 +16,7 @@ export class PokemanEntity implements Pokemon {
 
   @ApiProperty()
   speed: number;
+
+  @ApiProperty()
+  level: number;
 }

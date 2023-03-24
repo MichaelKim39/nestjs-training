@@ -64,6 +64,10 @@ The prisma service will be available for any module that imports `PrismaModule`
 
 Generate REST resources using `npx nest generate resource`
 
-# Other
+# Other / Misc
 
-DTO = Data Transfer Object -> defines how the request should look like
+- DTO = Data Transfer Object -> defines how the request should look like
+
+- More secure not to have auto increment ID - ok for pokemon but not for sensitive data like user IDs (Affects guessability of the ID and aggregate values like total users - better to hide info from hackers)
+
+- Note on seeding, don't overrely on fake data and tests

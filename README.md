@@ -37,6 +37,7 @@ $ pnpm install
 ```bash
 # development
 $ pnpm run start
+$ docker-compose up
 
 # watch mode
 $ pnpm run start:dev
